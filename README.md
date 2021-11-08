@@ -1,2 +1,1 @@
-# springboot_junit_mockito
-# springboot_junit_mockito
+#  The purpose of this project is to learn Junit and Mockito testing frameworks
