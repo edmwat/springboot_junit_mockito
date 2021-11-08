@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import com.edmwat.springTest.model.Student;
 import com.edmwat.springTest.repo.StudentRepository;
 
+import net.bytebuddy.asm.Advice.OffsetMapping.ForOrigin.Renderer.ForReturnTypeName;
+
 @Service 
 public class StudentService {
 	private final StudentRepository studentRepository;
@@ -18,11 +20,10 @@ public class StudentService {
 	}
 	
 	public List<Student> getAllStudents(){
-		return List.of(
-				new Student(null,"Jame Bond","james@gmail.com"),
-				new Student(null,"Anna Marie","anna@gmail.com"),
-				new Student(null,"Will Smith","smith@gmail.com")
-				);
+		return studentRepository.findAll();
+	}
+	public Student registerNewStudent(Student student) {
+		return studentRepository.save(student);
 	}
 	
 
