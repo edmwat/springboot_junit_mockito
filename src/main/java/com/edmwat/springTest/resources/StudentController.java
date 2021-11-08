@@ -32,6 +32,4 @@ public class StudentController {
 	public ResponseEntity<Student> registerNewStudents(@RequestBody Student student){	
 		return ResponseEntity.ok().body(studentService.registerNewStudent(student));
 	}
-	
-
 }

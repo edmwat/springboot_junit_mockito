@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.HttpClientErrorException.BadRequest;
 
 import com.edmwat.springTest.model.Student;
 import com.edmwat.springTest.repo.StudentRepository;
@@ -22,7 +24,13 @@ public class StudentService {
 	public List<Student> getAllStudents(){
 		return studentRepository.findAll();
 	}
+	
 	public Student registerNewStudent(Student student) {
+		boolean ifExists= studentRepository.findStudentByEmail(student.getEmail());
+		
+		if(ifExists) {
+			throw new HttpClientErrorException(null, "Email "+student.getEmail() +" taken");
+		}
 		return studentRepository.save(student);
 	}
 	
